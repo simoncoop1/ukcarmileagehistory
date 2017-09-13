@@ -1,0 +1,99 @@
+h2.myHeader{    
+    text-align: center;
+	/*width: 75%;*/
+	font-family: myFirstFont;
+	letter-spacing: 4px;
+	color: #580d9d;
+	line-height:2em
+	
+}
+
+div.myDiv{
+	background-color:WhiteSmoke;
+	border-radius: 15px;
+    border: 2px solid #73AD21;
+    padding: 10px; 
+    /*height: 70px;*/
+	vertical-align: middle;
+	
+}
+
+div.myDivFooter{
+	/*width:100px;*/
+	/*border:15px solid lightblue ;*/
+    padding: 10px;
+	padding-top: 50px;
+    /*margin: 25px;*/
+
+}
+
+p.myParagraph{
+	text-align: left;
+}
+
+input.tb2 {
+	background-color : #99FFCC;
+	border: 1px solid #008000;
+	width: 230px;
+	padding: 5px 0px;
+}
+
+.font, small{
+color: Gray;
+}	
+
+.button {
+    /*background-color: #4CAF50;*/
+	background-color: #99FFCC;	
+    /*border: none;*/
+	border: 1px solid #008000;
+    color: Gray;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.logo a{
+/*float:left;
+overflow:visible;
+color:#fff;
+font-weight:700;
+font-size:30px;
+line-height:1;
+text-decoration:none;
+text-rendering:optimizeLegibility;
+border-bottom:1px solid transparent;
+background:url(open-government-licence.png) no-repeat;
+background-size:36px 32px;
+background-position:0 0;*/
+
+	display: block;
+    width: 41px;
+    height: 17px;
+    overflow: visible;
+    text-indent: -999em;
+    background: url(open-government-licence.png) 0 0 no-repeat;
+	
+
+}
+
+@font-face{
+	font-family:myFirstFont;
+	src: url(brankovic.ttf)
+}
+
+/*.logo small{
+	color: Gray;
+}*/
+
+
+
+
+
+
+    
+
