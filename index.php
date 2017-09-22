@@ -64,6 +64,8 @@ if($debug == true){
 //echo rawurlencode($theNum . "=" . "y334+tko" . "&submit=Continue") . "\n";
 //echo $theNum . "=" . "y334+tko" . "&submit=Continue" . "\n";
 
+//$theNum = "171246641382";
+
 $postData = $theNum . "=" . urlencode($reg) . "&submit=Continue";
 $info = curl_download2("https://www.check-mot.service.gov.uk/",$postData);
 ParseMOTPage($info);
@@ -116,7 +118,6 @@ function ParseMOTPage($data){
 	
 	//bug fix 12/09/2017	
 	$elements = $xpath->query("/html/body/main/div[@class=\"grid-row u-space-b30 u-pad-b15 u-border-bgrey2\"]");
-	
 	//print "\n" . count($elements) . "\n"; print number of elements
 	
 	$counter1 = 0;
@@ -135,8 +136,6 @@ function ParseMOTPage($data){
 			//	echo $node->nodeValue. "\n";
 			//}
 			//echo $element->getNodePath();
-			
-			
 
 			//$subelements = $xpath->query("div/h3/text()[2]",$element);
 			$subelements1 = $xpath->query("div/h3/text()[2]",$element);
@@ -146,34 +145,9 @@ function ParseMOTPage($data){
 			//$atest = $xml->addChild('test');
 			
 			//debug
-			//var_dump($subelements->item(0)->nodeValue);
-			//echo $subelements1->item(0)->nodeValue;
-			//echo $subelements2->item(0)->nodeValue;
-			//echo $subelements2->item(1)->nodeValue;
 			//print_r($subelements);
-					
-			
-			$test = new MOTMileage();
-			
-			/*for($i = 0; $i <= $subelements->length-3; $i+=3){
-				$xpathDate = $subelements->item($i)->nodeValue;							
-				$xpathMileage = $subelements->item($i+1)->nodeValue;
-				$xpathMotNum = $subelements->item($i+2)->nodeValue;
-				
-				//$xpathDate = trim($xpathDate);
-				//$xpathMileage = trim($xpathMileage);
-				//$xpathMotNum = trim($xpathMotNum);
-				
-				//$atest->addChild('date' , $xpathDate);
-				//$atest->addChild('mileage' , $xpathMileage);
-				//$atest->addChild('motNum' , $xpathMotNum);
-				
-				$test->date = $xpathDate;
-				$test->mileage = $xpathMileage;
-				$test->motNum = $xpathMotNum;
-
-				
-			}*/
+						
+			$test = new MOTMileage();		
 
 			$xpathDate = $subelements1->item(0)->nodeValue;
 			$xpathMileage = $subelements2->item(0)->nodeValue;
@@ -329,6 +303,9 @@ function curl_download2($Url,$postData){
  
     // User agent
     //curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
+	
+	//set useragent
+	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
  
     // Include header in result? (0 = yes, 1 = no)
     curl_setopt($ch, CURLOPT_HEADER, 0);	
