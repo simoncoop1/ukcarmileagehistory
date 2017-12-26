@@ -53,6 +53,7 @@ if(isset($_GET["reg"])){
 }
 else{
 	//error message
+	print "reg not set !!\n";
 }
 if($debug == true){
 	//$reg = "y334+tko";
@@ -64,8 +65,10 @@ if($debug == true){
 //echo rawurlencode($theNum . "=" . "y334+tko" . "&submit=Continue") . "\n";
 //echo $theNum . "=" . "y334+tko" . "&submit=Continue" . "\n";
 
-//$theNum = "171246641382";
+//useful for debug
+$theNum = "47073374952";
 
+//to debug copy in some post valid post date from browser debug
 $postData = $theNum . "=" . urlencode($reg) . "&submit=Continue";
 $info = curl_download2("https://www.check-mot.service.gov.uk/",$postData);
 ParseMOTPage($info);
@@ -86,14 +89,14 @@ function ParseMOTPage($data){
 	$acar->motRecords = array();	
 	
 	$carName = $xpath->evaluate("string(/html/body/main/h1/text()[2])");
-	trim($carName);
+	$carName= trim($carName);
 	
 	$acar->name  = $carName;
 	
 	//get the registration date to represent mileago 0
 	//$elements2 = $xpath->evaluate("string(/html/body/main/div/div/div/div[@class=\"column-one-third\"][3]/h2/text())");
 	$registrationDate = $xpath->evaluate("string(/html/body/main/div/div/div/div[@class=\"column-one-third\"][3]/h2/text()[2])");
-	trim($registrationDate);
+	$registrationDate = trim($registrationDate);
 	
 	$test = new MOTMileage();
 	$test->date = $registrationDate;
@@ -115,10 +118,13 @@ function ParseMOTPage($data){
 	
 	//old
 	//$elements = $xpath->query("/html/body/main/div[@class=\"grid-row u-space-b15\"]");
-	
-	//bug fix 12/09/2017	
-	$elements = $xpath->query("/html/body/main/div[@class=\"grid-row u-space-b30 u-pad-b15 u-border-bgrey2\"]");
+		
+	$elements = $xpath->query("/html/body/main/div/div/div/div/div[@class=\"grid-row u-space-b30 u-pad-b15 u-border-bgrey2\"]");
 	//print "\n" . count($elements) . "\n"; print number of elements
+
+	
+	//print "\n" . count($elements) . "\n"; //print number of elements
+
 	
 	$counter1 = 0;
 	
@@ -305,7 +311,10 @@ function curl_download2($Url,$postData){
     //curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
 	
 	//set useragent
-	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
+	//curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
+	//linux
+	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36");
+
  
     // Include header in result? (0 = yes, 1 = no)
     curl_setopt($ch, CURLOPT_HEADER, 0);	
